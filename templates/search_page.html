@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="post">
+        Enter your preferences
+    <br>
+    College Name <textarea cols="100" placeholder="Enter the college name"></textarea>
+    <br>
+    Preferred Courses
+    <select name=courses_list method="GET" action="/" multiple>
+        <option value="Preferred Courses"> 
+        {% for course in courses_list %}
+        <option value="{{course}}">{{course}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    Facilities Preferred
+    <select name=facilities_list method="GET" action="/" multiple>
+        <option value="Facilities Preferred"> 
+        {% for facility in facilities_list %}
+        <option value="{{facility}}">{{facility}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    Preferred States
+    <select name=states_list method="GET" action="/" multiple>
+        <option value="Preferred States"> 
+        {% for state in states_list %}
+        <option value="{{state}}">{{state}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    Preferred City
+    <select name=cities_list method="GET" action="/" multiple>
+        <option value="Preferred Cities"> 
+        {% for city in cities_list %}
+        <option value="{{city}}">{{city}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    Universities Preferred
+    <select name=universities_list method="GET" action="/" multiple>
+        <option value="Universities Preferred"> 
+        {% for university in universities_list %}
+        <option value="{{university}}">{{university}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    Preferred College Type
+    <select name=college_type_list method="GET" action="/" multiple>
+        <option value="Preferred College Type"> 
+        {% for college_type in college_type_list %}
+        <option value="{{college_type}}">{{college_type}}</option>  
+        {% endfor %}  
+    </select>
+    <br>
+    <button value="Submit">Submit data</button>
+
+    </form>
+</body>
+</html>
