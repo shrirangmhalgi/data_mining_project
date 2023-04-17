@@ -4,64 +4,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <title>Search Page</title>
+    
 </head>
 <body>
-    <form action="post">
+        <header class="header">
+            <div class="container-fluid">
+            <div class="header__logo-box">
+                <p class="header__logo">BrightPath</p>
+            </div>
+            <form action="post">
+                <div class="header__text-box">
+                    <label for="college_name">College Name</label>
+                        <select name=college_name_list id="college_name_list" method="GET" action="/" multiple>
+                            <option value="College Name"> 
+                            {% for college in college_name_list %}
+                            <option value="{{college}}">{{college}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <label for="courses_list">Preferred Courses</label>
+                        <select name=courses_list id='courses_list' method="GET" action="/" multiple>
+                            <option value="Preferred Courses"> 
+                            {% for course in courses_list %}
+                            <option value="{{course}}">{{course}}</option>  
+                            {% endfor %}  
+                        </select>
+                        <br>
+
+                        <label for="facilities_list">Facilities Preferred</label>
+                        <select name=facilities_list id='facilities_list' method="GET" action="/" multiple>
+                            <option value="Facilities Preferred"> 
+                            {% for facility in facilities_list %}
+                            <option value="{{facility}}">{{facility}}</option>  
+                            {% endfor %}  
+                        </select>
+                        <br>
+
+                        <label for="states_list">Preferred States</label>
+                        <select name=states_list id="states_list" method="GET" action="/" multiple>
+                            <option value="Preferred States"> 
+                            {% for state in states_list %}
+                            <option value="{{state}}">{{state}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <label for="cities_list">Preferred City</label>
+                        <select name=cities_list id="cities_list" method="GET" action="/" multiple>
+                            <option value="Preferred Cities"> 
+                            {% for city in cities_list %}
+                            <option value="{{city}}">{{city}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <label for="universities_list">Universities Preferred</label>
+                        <select name=universities_list id="universities_list" method="GET" action="/" multiple>
+                            <option value="Universities Preferred"> 
+                            {% for university in universities_list %}
+                            <option value="{{university}}">{{university}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <br>
+                        <label for="college_type_list">Preferred College Type</label>
+                        <select name=college_type_list id="college_type_list" method="GET" action="/" multiple>
+                            <option value="Preferred College Type"> 
+                            {% for college_type in college_type_list %}
+                            <option value="{{college_type}}">{{college_type}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <label for="genders_accepted_list">Preferred Genders</label>
+                        <select name=genders_accepted_list id="genders_accepted_list" method="GET" action="/" multiple>
+                            <option value="Preferred Genders"> 
+                            {% for gender_type in genders_accepted_list %}
+                            <option value="{{gender_type}}">{{gender_type}}</option>  
+                            {% endfor %}  
+                        </select>
+
+                        <button value="Submit" class="btn btn--white btn--animated">
+                            Discover your options
+                            <!-- <a href="/templates/results_page.html" class="btn btn--white btn--animated js--scroll-to-features">Discover more</a> -->
+                        </button>
+                </div>
+            </form>
+            
+        </div>
+        </header>
+        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+        <script>
+            new MultiSelectTag('courses_list')  
+            new MultiSelectTag('facilities_list')  
+            new MultiSelectTag('states_list')  
+            new MultiSelectTag('cities_list')  
+            new MultiSelectTag('universities_list')  
+            new MultiSelectTag('college_type_list')
+            new MultiSelectTag('genders_accepted_list')
+            new MultiSelectTag('college_name_list')
+        </script>
+    <!-- <form action="post">
         Enter your preferences
     <br>
     College Name <textarea cols="100" placeholder="Enter the college name"></textarea>
-    <br>
-    Preferred Courses
-    <select name=courses_list method="GET" action="/" multiple>
-        <option value="Preferred Courses"> 
-        {% for course in courses_list %}
-        <option value="{{course}}">{{course}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
-    Facilities Preferred
-    <select name=facilities_list method="GET" action="/" multiple>
-        <option value="Facilities Preferred"> 
-        {% for facility in facilities_list %}
-        <option value="{{facility}}">{{facility}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
-    Preferred States
-    <select name=states_list method="GET" action="/" multiple>
-        <option value="Preferred States"> 
-        {% for state in states_list %}
-        <option value="{{state}}">{{state}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
-    Preferred City
-    <select name=cities_list method="GET" action="/" multiple>
-        <option value="Preferred Cities"> 
-        {% for city in cities_list %}
-        <option value="{{city}}">{{city}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
-    Universities Preferred
-    <select name=universities_list method="GET" action="/" multiple>
-        <option value="Universities Preferred"> 
-        {% for university in universities_list %}
-        <option value="{{university}}">{{university}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
-    Preferred College Type
-    <select name=college_type_list method="GET" action="/" multiple>
-        <option value="Preferred College Type"> 
-        {% for college_type in college_type_list %}
-        <option value="{{college_type}}">{{college_type}}</option>  
-        {% endfor %}  
-    </select>
-    <br>
+    
+    
     <button value="Submit">Submit data</button>
 
-    </form>
+    </form> -->
 </body>
 </html>
