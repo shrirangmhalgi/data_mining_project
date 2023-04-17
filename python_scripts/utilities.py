@@ -5,8 +5,8 @@ import pickle
 def load_data():
     # constants
     train_data = pd.read_csv("../data/train.csv")
-    knn_model = pickle.load(open("./models/knn_model.sav", 'rb'))
-    model_params_dict = json.load(open("./models/model_params_dict.json", 'r'))
+    knn_model = pickle.load(open("../data/models/knnpickle_file.pkl", 'rb'))
+    model_params_dict = json.load(open("../data/models/final_param_out.json", 'r'))
 
     return {
         "train_data": train_data,
