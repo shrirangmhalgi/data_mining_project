@@ -18,6 +18,7 @@ def search_page():
                                 college_type_list=sorted(json_data["College Type"]),
                                 courses_list=sorted(json_data["Courses_list"]),
                                 college_name_list=sorted(college_name_list))
+
     elif request.method == "POST":
         '''
         columns not used: ['College Name','Campus Size', 'Total Faculty',
@@ -56,14 +57,13 @@ def search_page():
         
 
         results = predict_model(data_loaded, model_params_dict)
-        return redirect(url_for('results_page', content=results.to_dict()))
+        return render_template("results_page.html", content=results.to_dict())
 
 
-
-@app.route('/results', methods=["POST"])
+@app.route('/results', methods=["GET", "POST"])
 def results_page():
-    content = "results come here in a dictionary"
-    return render_template("results_page.html", content=content)
+    # content = "results come here in a dictionary"
+    return render_template("results_page.html")
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
