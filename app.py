@@ -32,13 +32,25 @@ def search_page():
                         'Courses_list': [], 'Facilities_list': []
                     }
         '''
-        data = {'college_name': 'National Institute of Technology Rourkela '}
+        data = {'college_name': f"{request.form.getlist('college_name_list')[0]} ",
+        'Genders Accepted': request.form.getlist('genders_accepted_list'),
+        'Total Student Enrollments': -1,
+        'Rating': -1,
+        'University': request.form.getlist('universities_list'),
+        'City': request.form.getlist('cities_list'),
+        'State': request.form.getlist('states_list'),
+        'Average Fees': -1,
+        'Courses_list': request.form.getlist('courses_list'),
+        'Facilities_list': request.form.getlist('facilities_list')
+        }
+        # data = {'college_name': "National Institute of Technology Rourkela "}
+        print(f"{data}")
         # data = data.to_dict()
 
         model_params_dict = data_loaded['model_params_dict'].copy()
         if data['college_name'] != '':
             college = data_loaded['train_data'][data_loaded['train_data']['College Name'] == data['college_name']]
-            print(college)
+            print(f"college = {college}")
             college = ohe_data(college)
             for key, value in college.items():
                 if key in model_params_dict:
