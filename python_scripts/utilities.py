@@ -48,7 +48,8 @@ def load_data():
     return {
         "train_data": train_data,
         "knn_model": neigh,
-        "model_params_dict": model_params_dict
+        "model_params_dict": model_params_dict,
+        'ohe_prefix_dict': ohe_prefix_dict
     }
 
 def read_json():

@@ -19,6 +19,18 @@ def search_page():
                                 courses_list=sorted(json_data["Courses_list"]),
                                 college_name_list=sorted(college_name_list))
     elif request.method == "POST":
+        '''
+        columns not used: ['College Name','Campus Size', 'Total Faculty',
+                                        'Established Year', 'Courses', 'Facilities',
+                                        'Country','Genders Accepted', 'University',
+                                        'City', 'State', 'College Type', 'Courses_list',
+                                        'Facilities_list']
+        request.form = {'college_name': '', 'Genders Accepted': [],
+                        'Total Student Enrollments': 1234, 'Rating': [1,2,3,4],
+                        'University': [], 'City': [], 'State': [], 'Average Fees': 1234,
+                        'Courses_list': [], 'Facilities_list': []
+                    }
+        '''
         data = {'college_name': 'National Institute of Technology Rourkela '}
         # data = data.to_dict()
 
@@ -32,8 +44,15 @@ def search_page():
                     model_params_dict[key] = value
         
         for key, value in data.items():
-            if key in model_params_dict:
-                model_params_dict[key] = value
+            if key in data_loaded['ohe_prefix_dict']:
+                ohe_prefix = data_loaded['ohe_prefix_dict'][key]
+                for val in data_loaded['ohe_prefix_dict'][key]:
+                    ohe_col = f"{ohe_prefix}{val}"
+                    if ohe_col in model_params_dict:
+                        model_params_dict[ohe_col] = 1
+            else:
+                if key in model_params_dict:
+                    model_params_dict[key] = value
         
 
         results = predict_model(data_loaded, model_params_dict)
