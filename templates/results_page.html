@@ -12,6 +12,23 @@
             <p class="header__logo">BrightPath</p>
         </div>
     </header>
-    {{content}}
+    <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for dictt in content %}
+        {% for key, value in dictt.items() %}
+         <tr>
+             <td> {{ key }} </td>
+             <td> {{ value }} </td>
+         </tr>
+        {% endfor %}
+        {% endfor %}
+        </tbody>
+      </table>
 </body>
 </html>
