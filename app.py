@@ -68,6 +68,7 @@ def search_page():
         
 
         results = predict_model(data_loaded, model_params_dict)
+        print(f"results = {results.to_dict('records')}")
         return render_template("results_page.html", content=results.to_dict('records'))
 
 

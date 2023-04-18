@@ -4,31 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style_results.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <title>Results</title>
+    
 </head>
 <body>
-    <header class="header">
-        <div class="header__logo-box">
-            <p class="header__logo">BrightPath</p>
+    <div style="font-size: 2.5rem;">
+        Alternative colleges for {{content[0]['College Name']}} are:
+    </div>
+    <br>
+    <div>
+        <table style="table-layout: fixed; text-align: center; width: 100%" class="table, table-striped table-bordered ">
+            <thead class="thead-dark">
+              <tr>
+                <th>College Name</th>
+                <th>Genders Accepted</th>
+                <th>Campus Size</th>
+                <th>Total Student Enrollments</th>
+                <th>Total Faculty</th>
+                <th>Established Year</th>
+                <th>Rating</th>
+                <th>University</th>
+                <th>Courses</th>
+                <th>Facilities</th>
+                <th>City</th>
+                <th>College Type</th>
+                <th>Average Fees</th> 
+              </tr>
+            </thead>
+            <tbody>
+            {% for dictt in content %}
+             <tr>
+                <td style="word-wrap: break-word;"> {{ dictt['College Name'] }} </td>
+                <td style="word-wrap: break-word;"> {{ dictt['Genders Accepted'] }} </td>
+                <td style="word-wrap: break-word;"> {{ dictt['Campus Size'] }} </td>
+                <td style="word-wrap: break-word;"> {{ '{0:0.0f}'.format(dictt['Total Student Enrollments']) }} </td>
+                <td style="word-wrap: break-word;"> {{ '{0:0.0f}'.format(dictt['Total Faculty']) }} </td>
+                <td style="word-wrap: break-word;"> {{ '{0:0.0f}'.format(dictt['Established Year']) }} </td>
+                <td style="word-wrap: break-word;"> {{ '{0:0.2f}'.format(dictt['Rating']) }} </td>
+                <td style="word-wrap: break-word;"> {{ dictt['University'] }} </td>
+                <td style="word-wrap: break-word;"> {{ ', '.join(dictt['Courses_list']) }} </td>
+                <td style="width:90px; overflow: hidden;"> {{ dictt['Facilities'] }} </td>
+                <td style="word-wrap: break-word;"> {{ dictt['City'] }} </td>
+                <td style="word-wrap: break-word;"> {{ dictt['College Type'] }} </td>
+                <td style="word-wrap: break-word;"> {{ '{0:0.2f}'.format(dictt['Average Fees']) }} </td>
+                
+    </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+    <footer class="footer">
+    
+        <div class="row" style="display: flex; align-items: center;">
+                <p class="footer__copyright">
+                    Developed by <a href="#" class="footer__link">Dipak Bange, Shrirang Mhalgi, Anushka Kamerkar</a> as a part of <a href="https://mohfw.gov.in/" class="footer__link">Data Mining</a> project 
+                    on 19<sup>th</sup> April 2023 </p>
         </div>
-    </header>
-    <table>
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for dictt in content %}
-        {% for key, value in dictt.items() %}
-         <tr>
-             <td> {{ key }} </td>
-             <td> {{ value }} </td>
-         </tr>
-        {% endfor %}
-        {% endfor %}
-        </tbody>
-      </table>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+
+</html>
+
 </body>
 </html>
