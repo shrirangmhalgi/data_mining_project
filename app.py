@@ -87,4 +87,4 @@ def results_page():
     return render_template("results_page.html")
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    app.run()
